@@ -1,10 +1,9 @@
-import 'dart:ui';
+
 
 import 'package:energy_cost/src/ViewModel/energy_cost_vm.dart';
 import 'package:energy_cost/src/widgets/time_entry_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class WideHomePage extends StatefulWidget {
   const WideHomePage({super.key});
@@ -132,15 +131,15 @@ class _WideHomePageState extends State<WideHomePage> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Day: ${model.totalDayCost.toStringAsFixed(2)}',
+                                    'Day: ${model.currencySymbol} ${model.totalDayCost.toStringAsFixed(2)}',
                                   ),
                                   Spacer(),
                                   Text(
-                                    'Month: ${model.totalMonthCost.toStringAsFixed(2)}',
+                                    'Month: ${model.currencySymbol} ${model.totalMonthCost.toStringAsFixed(2)}',
                                   ),
                                   Spacer(),
                                   Text(
-                                    'Year: ${model.totalYearCost.toStringAsFixed(2)}',
+                                    'Year: ${model.currencySymbol} ${model.totalYearCost.toStringAsFixed(2)}',
                                   ),
                                   Spacer(),
                                   Text(
@@ -239,8 +238,8 @@ class _WideHomePageState extends State<WideHomePage> {
 
                     double? itemCost = model.items[index].totalCost(model.kWh);
                     String cost = itemCost != null
-                        ? '${model.currencyFormat.currencySymbol} ${itemCost.toStringAsFixed(2)}'
-                        : '${model.currencyFormat.currencySymbol} 0.00';
+                        ? '${model.currencySymbol} ${itemCost.toStringAsFixed(2)}'
+                        : '${model.currencySymbol} 0.00';
                     return SizedBox(
                       width: 62,
                       child: Center(child: Text(cost)),

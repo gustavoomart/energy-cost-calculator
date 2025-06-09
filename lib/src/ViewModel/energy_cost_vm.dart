@@ -18,7 +18,7 @@ class EnergyCostViewModel extends ChangeNotifier {
 
   final locale = PlatformDispatcher.instance.locale;
   late final currencyFormat = NumberFormat.simpleCurrency(locale: locale.toString());
-
+  String get currencySymbol => currencyFormat.currencySymbol;
 
   double get kWh => double.tryParse(kWhCtrl.text) ?? 0;
 
@@ -112,11 +112,11 @@ class EnergyCostViewModel extends ChangeNotifier {
           ),
           pw.SizedBox(height: 16),
           pw.Text('Total Power: ${totalPower.toStringAsFixed(2)} W'),
-          pw.Text('Total Cost per Day: \$${totalDayCost.toStringAsFixed(2)}'),
+          pw.Text('Total Cost per Day: $currencySymbol${totalDayCost.toStringAsFixed(2)}'),
           pw.Text(
-            'Total Cost per Month: \$${totalMonthCost.toStringAsFixed(2)}',
+            'Total Cost per Month: $currencySymbol${totalMonthCost.toStringAsFixed(2)}',
           ),
-          pw.Text('Total Cost per Year: \$${totalYearCost.toStringAsFixed(2)}'),
+          pw.Text('Total Cost per Year: $currencySymbol${totalYearCost.toStringAsFixed(2)}'),
         ],
       ),
     );
